@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notcoin Clone</title>
+    <link rel="stylesheet" href="stl.css">
+    <script async src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+    /* Стиль для індикатора завантаження */
+    .loader {
+            
+            border-radius: 50%;
+            border-top: 10px solid #edb10c;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Екран завантаження -->
+    <div id="loader" class="loader"></div>
+
+    <!-- Основний екран гри -->
+    <div class="game-container" id="game-screen" style="display: none;">
+        <div class="header">
+            <button class="close-btn">✖</button>
+            <h1>Notcoin</h1>
+            <button class="menu-btn">⋮</button>
+        </div>
+        <button class="join-squad">Join squad &rsaquo;</button>
+        <div class="balance-section">
+            <div class="coin-icon">💰</div>
+            <div class="balance">2,500</div>
+            <div class="rank">377,748th</div>
+            <div class="league">Bronze</div>
+        </div>
+        <div class="main-coin" id="coin">
+            <span class="main-coin-icon">▲</span>
+        </div>
+        <div class="energy-section">
+            <div class="energy">⚡ 1000 / 1000</div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+        <div class="buttons-section">
+            <button class="action-btn" id="frens-btn">Frens</button>
+            <button class="action-btn" id="earn-btn">Earn</button>
+            <button class="action-btn" id="boosts-btn">Boosts</button>
+        </div>
+        <div class="message" style="display: none;"></div>
+        <!-- Контейнер для отримання Telegram ID -->
+        <div class="telegram-id-container">
+            <button id="get-id-btn" class="action-btn" style="width: 100%;">Отримати Telegram ID</button>
+            <p id="result" style="margin-top: 10px;"></p>
+        </div>
+    </div>
+    <!-- Модальні вікна для Boosts -->
+    <div id="boostsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Boosts</h1>
+            <div class="boost-item" data-boost="multitap">
+                <span class="boost-icon">☝️</span>
+                <div class="boost-details">
+                    <div class="boost-name">Multitap</div>
+                    <div class="boost-cost">500</div>
+                    <div class="boost-level">0 lvl</div>
+                </div>
+            </div>
+            <div class="boost-item" data-boost="energy-limit">
+                <span class="boost-icon">🔋</span>
+                <div class="boost-details">
+                    <div class="boost-name">Energy Limit</div>
+                    <div class="boost-cost">500</div>
+                    <div class="boost-level">0 lvl</div>
+                </div>
+            </div>
+            <div class="boost-item" data-boost="energy-recharge-speed">
+                <span class="boost-icon">⚡</span>
+                <div class="boost-details">
+                    <div class="boost-name">Energy Recharge Speed</div>
+                    <div class="boost-cost">1,000</div>
+                    <div class="boost-level">0 lvl</div>
+                </div>
+            </div>
+            <div class="boost-item">
+                <span class="boost-icon">🤖</span>
+                <div class="boost-details">
+                    <div class="boost-name">Tap bot</div>
+                    <div class="boost-cost">3,000</div>
+                    <div class="boost-level">0 lvl</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h2>Підтвердження покупки</h2>
+            <p id="confirmText">Ви впевнені, що хочете купити цей буст?</p>
+            <button id="confirmYes" class="confirm-btn">Так</button>
+            <button id="confirmNo" class="confirm-btn">Ні</button>
+        </div>
+    </div>
+    
+    <div id="insufficientFundsModal" class="modal">
+        <div class="modal-content">
+            <h2>Недостатньо балів</h2>
+            <p>У вас недостатньо балів для цієї покупки. Будь ласка, заробіть більше балів і спробуйте знову.</p>
+            <button id="insufficientFundsOk" class="confirm-btn">OK</button>
+        </div>
+    </div>
+    
+    <div class="game-container" id="frens-screen" style="display: none;">
+        <div class="header">
+            <button class="back-btn">Назад</button>
+            <h1>NOTCOIN</h1>
+            <button class="menu-btn">⋮</button>
+        </div>
+        <div class="frens-content">
+            <h2>Invite fren, get bonus</h2>
+            <div class="bonus-section">
+                <div class="bonus-item">
+                    <img src="coin-icon.png" alt="Coin Icon" class="icon">
+                    <p>Invite fren</p>
+                    <p><strong>2,500</strong> for you and your fren</p>
+                </div>
+                <div class="bonus-item">
+                    <img src="premium-icon.png" alt="Premium Icon" class="icon">
+                    <p>Fren with Telegram Premium</p>
+                    <p><strong>50,000</strong> for you and your fren</p>
+                </div>
+            </div>
+            <h2>Fren level up bonus</h2>
+            <div class="level-up-section">
+                <div class="level-up-item">
+                    <span>Silver</span>
+                    <span>+12,500</span>
+                    <span>+125,000</span>
+                </div>
+                <div class="level-up-item">
+                    <span>Gold</span>
+                    <span>+25,000</span>
+                    <span>+250,000</span>
+                </div>
+                <div class="level-up-item">
+                    <span>Platinum</span>
+                    <span>+50,000</span>
+                    <span>+500,000</span>
+                </div>
+                <div class="level-up-item">
+                    <span>Diamonds</span>
+                    <span>+100,000</span>
+                    <span>+1,000,000</span>
+                </div>
+            </div>
+            <button class="invite-btn">Invite a fren</button>
+        </div>
+    </div>
+    
+    <script src="skript.js" type="module"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Симулюємо запит до сервера
+            setTimeout(function() {
+                // При отриманні даних
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('game-screen').style.display = 'block';
+            }, 4000); // Симулюємо затримку в 3 секунди
+        });
+    </script>
+</body>
+</html>

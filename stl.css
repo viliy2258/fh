@@ -1,0 +1,386 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #1d1f21, #4a4e69);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+.game-container {
+    width: 320px;
+    background-color: #2b2b2b;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.game-container:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.9);
+    transform: translateY(-5px);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.close-btn, .menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover, .menu-btn:hover {
+    color: #ffcc00;
+}
+
+h1 {
+    font-size: 28px;
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffcc00;
+}
+
+.join-squad {
+    width: 100%;
+    margin: 15px 0;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    }
+    
+    .join-squad:hover {
+    background-color: #444;
+    transform: translateY(-3px);
+    }
+    
+    .balance-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0;
+    }
+    
+    .coin-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #ffcc00;
+    }
+    
+    .balance {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 8px;
+    }
+    
+    .rank, .league {
+    font-size: 15px;
+    color: #bbb;
+    }
+    
+    .main-coin {
+    width: 140px;
+    height: 140px;
+    background-color: #ffcc00;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px auto;
+    box-shadow: 0 8px 20px rgba(255, 204, 0, 0.8);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .main-coin:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 25px rgba(255, 204, 0, 1);
+    }
+    
+    .main-coin-icon {
+    font-size: 60px;
+    color: #333;
+    }
+    
+    .energy-section {
+    margin: 25px 0;
+    }
+    
+    .energy {
+    font-size: 20px;
+    margin-bottom: 10px;
+    }
+    
+    .progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: #555;
+    border-radius: 6px;
+    overflow: hidden;
+    }
+    
+    .progress {
+    width: 100%;
+    height: 100%;
+    background-color: #76c7c0;
+    transition: width 0.3s ease;
+    }
+    
+    .buttons-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    }
+    
+    .action-btn {
+    width: 30%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffcc00;
+    color: #222;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    }
+    
+    .action-btn:hover {
+    background-color: #f1b000;
+    transform: translateY(-3px);
+    }
+    
+    .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding-top: 60px;
+    }
+    
+    .modal-content {
+    background-color: #2b2b2b;
+    margin: 5% auto;
+    padding: 15px;
+    border: 1px solid #888;
+    width: 85%;
+    max-width: 350px;
+    border-radius: 15px;
+    color: white;
+    text-align: left;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+    from {
+    opacity: 0;
+    transform: translateY(-10px);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
+    
+    .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    }
+    
+    .close:hover,
+    .close:focus {
+    color: #fff;
+    text-decoration: none;
+    }
+    
+    .confirm-btn {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffcc00;
+    color: #222;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    }
+    
+    .confirm-btn:hover {
+    background-color: #f1b000;
+    }
+    
+    .boost-item {
+    background: #444;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    
+    .boost-item:hover {
+    background: #ffcc00;
+    color: #222;
+    transform: translateY(-3px);
+    }
+    
+    .boost-item.disabled {
+    background: #333;
+    color: #777;
+    cursor: not-allowed;
+    }
+    
+    .boost-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    }
+    
+    .boost-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    }
+    
+    .boost-name {
+    font-weight: bold;
+    }
+    
+    .boost-cost, .boost-level, .boost-status {
+    font-size: 14px;
+    color: #bbb;
+    }
+    
+    .boost-check {
+    font-size: 20px;
+    color: #0f0;
+    }
+    
+    .message {
+    background-color: #444;
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease, bottom 0.3s ease;
+    z-index: 2;
+    }
+    
+    .message.show {
+    opacity: 1;
+    bottom: 50px;
+    }
+    
+    #frens-screen {
+    display: none;
+    width: 320px;
+    background-color: #2b2b2b;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    overflow-y: auto;
+    max-height: 90vh;
+    transition: all 0.3s ease;
+    }
+    
+    .bonus-section, .level-up-section {
+    margin: 20px 0;
+    }
+    
+    .bonus-item, .level-up-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2c2c2e;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .bonus-item:hover, .level-up-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .bonus-item img, .level-up-item img {
+    width: 24px;
+    height: 24px;
+    }
+    
+    .level-up-item span {
+    flex-grow: 1;
+    text-align: left;
+    }
+    
+    .level-up-item span:last-child {
+    text-align: right;
+    }
+    
+    .invite-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffcc00;
+    color: #222;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    }
+    
+    .invite-btn:hover {
+    background-color: #f1b000;
+    transform: translateY(-3px);
+    }
+
+    #get-id-btn {
+        display: none; /* Приховує кнопку */
+    }
+
+    #result {
+        display: none; /* Приховує кнопку */
+    }
